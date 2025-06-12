@@ -2,12 +2,12 @@ import numpy as np
 
 
 def compute_gradient(x, y, w, b):
-    m = x.shape[0]
-
-    f = np.dot(w, x) + b
-    dw = np.sum((f - y) * x)
-    db = np.sum(f - y)
+    m, _ = x.shape
+    A = np.dot(x, w.T) + b
+    dz = A - y
+    dw = np.dot(x, w.T) + b
+    db = np.sum(dz)
     dw /= m
     db /= m
 
-    return dw, db
+    return db, dw
